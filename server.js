@@ -1,3 +1,4 @@
+const Otp = require("./models/Otp");
 const express = require("express");
 const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
