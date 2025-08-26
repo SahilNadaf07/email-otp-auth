@@ -1,120 +1,61 @@
-# 📧 Email OTP Authentication App
+# email-otp-auth
 
-A simple Node.js + Express application that provides **One-Time Password (OTP)** authentication via **email**.  
-This project demonstrates how to generate, send, and verify OTPs securely with a frontend built using **Bootstrap**.
+![GitHub](https://img.shields.io/github/license/username/repo)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/username/repo)
+![GitHub last commit](https://img.shields.io/github/last-commit/username/repo)
 
----
+A simple email OTP authentication system built using HTML. This project provides a basic authentication mechanism using a one-time password (OTP) sent to the user's email address.
 
-## ✨ Features
-- 🔐 Generate secure random OTPs
-- 📩 Send OTPs via email using **Nodemailer**
-- ✅ Verify OTPs with expiry validation
-- 🎨 Simple frontend with **Bootstrap**
-- ⚡ API endpoints (`/send-otp`, `/verify-otp`) for integration
+## Key Features and Highlights
+- Secure authentication process
+- Easy integration with existing systems
+- Lightweight and minimalistic design
 
----
+## Installation
+To install the necessary dependencies, run the following command:
+```bash
+npm install body-parser@2.2.0 cors@2.8.5 crypto@1.0.1 express@5.1.0 nodemailer@7.0.5
+```
 
-## 🛠️ Tech Stack
-- **Backend**: Node.js, Express
-- **Frontend**: HTML, Bootstrap
-- **Email Service**: Nodemailer (SMTP with Gmail)
-- **Security**: `crypto` for OTP generation
+## Usage
+To use the email OTP authentication system, follow these steps:
 
----
+1. Include the required dependencies in your project.
+2. Configure the email settings for nodemailer.
+3. Implement the OTP generation and verification logic in your application.
 
-## 📂 Project Structure
-email-otp-auth/
-│── server.js          # Main server file
-│── public/            # Frontend files (HTML, CSS, JS)
-│── package.json       # Dependencies
-│── .gitignore         # Ignored files (node_modules, etc.)
+Sample code snippet for sending OTP via email:
+```javascript
+// Code snippet to send OTP via email
+const nodemailer = require('nodemailer');
 
----
+// Create a nodemailer transporter
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'your-email@gmail.com',
+    pass: 'your-email-password'
+  }
+});
 
-## 🚀 Getting Started
+// Send OTP to user's email
+transporter.sendMail({
+  from: 'your-email@gmail.com',
+  to: 'user@example.com',
+  subject: 'Your OTP for authentication',
+  text: 'Your OTP is: 123456'
+});
+```
 
-### 1. Clone the Repository
-git clone https://github.com/SahilNadaf07/email-otp-auth.git
-cd email-otp-auth
+## Dependencies
+- body-parser: ^2.2.0
+- cors: ^2.8.5
+- crypto: ^1.0.1
+- express: ^5.1.0
+- nodemailer: ^7.0.5
 
-### 2. Install Dependencies
-npm install
+## Contributing
+Contributions are welcome! Please fork the repository and submit a pull request for any enhancements or bug fixes.
 
-### 3. Configure Environment Variables  
-Create a `.env` file in the root directory:
-
-EMAIL_USER=your_email@gmail.com
-EMAIL_PASS=your_app_password
-PORT=5000
-
-⚠️ For Gmail, you need to generate an **App Password** instead of using your normal email password.  
-Guide: https://support.google.com/accounts/answer/185833
-
----
-
-### 4. Run the Server
-node server.js
-
-Server will run at:  
-👉 http://localhost:5000
-
----
-
-## 📌 API Endpoints
-
-### 1. Send OTP
-POST /send-otp
-
-Request Body:
-{
-  "email": "user@example.com"
-}
-
-Response:
-{
-  "message": "OTP sent successfully!"
-}
-
----
-
-### 2. Verify OTP
-POST /verify-otp
-
-Request Body:
-{
-  "email": "user@example.com",
-  "otp": "123456"
-}
-
-Response:
-{
-  "success": true,
-  "message": "OTP verified successfully!"
-}
-
----
-
-## 🎨 Frontend
-The app serves a simple **Bootstrap UI** where users can:
-- Enter their email
-- Request OTP
-- Verify OTP
-
----
-
-## 🔮 Next Steps (Future Improvements)
-- 📱 Add SMS OTP support (Twilio, Nexmo)
-- 🗄️ Store OTPs in a database (MongoDB, PostgreSQL)
-- 🔑 JWT Authentication after OTP verification
-- 🌍 Deploy on Render / Vercel / AWS
-
----
-
-## 👨‍💻 Author
-**Sahil Nadaf**  
-💼 GitHub: https://github.com/SahilNadaf07
-
----
-
-## 📜 License
-This project is licensed under the **MIT License** — feel free to use and modify it.
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
